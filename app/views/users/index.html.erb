@@ -2,15 +2,15 @@
 <% @user.each do |user| %>
 
 <%= attachment_image_tag user, :image %>
- <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-
+ <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+ 
 <table>
   <tbody>
     <tr>
-     <th>name</th>
-     <th><%= @user.name %></th>
-     <th>introduction</th>
-     <th><%= @user.introduction %></th>
+     <td>name</td>
+     <td><%= @user.name %></td>
+     <td>introduction</td>
+     <td><%= @user.introduction %></td>
     </tr>
   </tbody>
 </table>
@@ -31,24 +31,25 @@
 
 <% end %>
 
-<h1>Books</h1>
+<h1>Users</h1>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Opinion</th>
+      <th>Image</th>
+      <th>Name</th>
     </tr>
   </thead>
 
   <tboudy>
     <tr>
-      <% @books.each do |book| %>
+      <% @users.each do |user| %>
 
       <td><%= link_to book_path(book.id) do %>
         <%= book.title %>
        <% end %>
       </td>
-      <td><%= book.body %></td>
+      <td><%= user.name %></td>
+      <td><%= link_to 'Show', user_path(@users) %></td>
     </tr>
     <% end %>
   </tboudy>

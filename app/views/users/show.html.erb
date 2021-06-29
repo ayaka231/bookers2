@@ -2,15 +2,15 @@
 <% @user.each do |user| %>
 
 <%= attachment_image_tag user, :image %>
- <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+ <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
 
 <table>
   <tbody>
     <tr>
-     <th>name</th>
-     <th><%= @user.name %></th>
-     <th>introduction</th>
-     <th><%= @user.introduction %></th>
+     <td>name</td>
+     <td><%= @user.name %></td>
+     <td>introduction</td>
+     <td><%= @user.introduction %></td>
     </tr>
   </tbody>
 </table>
