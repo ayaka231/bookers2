@@ -1,22 +1,19 @@
 <h1>User info</h1>
-<% @user.each do |user| %>
 
-<%= attachment_image_tag user, :image %>
- <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+ <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
 
 <table>
   <tbody>
     <tr>
-     <th>name</th>
-     <th><%= @user.name %></th>
-     <th>introduction</th>
-     <th><%= @user.introduction %></th>
+     <td>name</td>
+     <td><%= @user.name %></td>
+     <td>introduction</td>
+     <td><%= @user.introduction %></td>
     </tr>
   </tbody>
 </table>
-<% end %>
 
-<%=link_to 'プロフィール編集', edit_user_paht(@user) %>
+<%=link_to 'プロフィール編集', edit_user_path(@user) %>
 
 <h1>New Book</h1>
 <%= form_with model:@book, local:true do |f| %>
@@ -40,10 +37,10 @@
     </tr>
   </thead>
 
-  <tboudy>
+  <tbody>
     <tr>
       <% @books.each do |book| %>
-
+      <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
       <td><%= link_to book_path(book.id) do %>
         <%= book.title %>
        <% end %>
@@ -51,5 +48,5 @@
       <td><%= book.body %></td>
     </tr>
     <% end %>
-  </tboudy>
+  </tbody>
 </table>
