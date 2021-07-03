@@ -9,8 +9,17 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <% if user_signed_in? %>
+  <body class ="d-flex flex-column">
+　<header class ="bg-dark text-white">
+　 <nav class="navbar navbar-expend-lg ml-auto">
+
+　  <div class="container">
+　  <h1>Bookers</h1>
+
+    <ul class="navbar-nav ml-auto">
+
+　  <% if user_signed_in? %>
+
      <li>
         <%= link_to "Home", root_path %>
      </li>
@@ -24,11 +33,12 @@
      </li>
 
      <li>
-       <%=link_to "logout", destroy_user_session_path, method: :delete %>
+       <%= link_to "logout", destroy_user_session_path, method: :delete %>
      </li>
 
     <% else %>
      <li>
+        <i class="fa-solid fa-house-chimney"></i>
         <%= link_to "Home", root_path %>
      </li>
 
@@ -43,8 +53,21 @@
      <li>
        <%= link_to "log in", new_user_session_path %>
      </li>
+     </ul>
     <% end %>
+     </div>
+     </nav>
+   </header>
 
+   <main>
+   <% flash.each do |message_type, message| %>
+     <%= content_tag :div, message, class: message_type %>
+    <% end %>
     <%= yield %>
+    </main>
+
+    <footer>
+        <P>CopyRight Infratop.inc</P>
+    </footer>
   </body>
 </html>

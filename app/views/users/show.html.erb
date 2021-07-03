@@ -1,3 +1,10 @@
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>errors
+  <% @p.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
 <h1>User info</h1>
 
  <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
