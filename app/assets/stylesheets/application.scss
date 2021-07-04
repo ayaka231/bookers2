@@ -17,11 +17,17 @@
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
 
- * {
+ *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
  }
+
+.navbar-dark{
+ color: #fff;
+}
+
+
 
  li {
   list-style: none;

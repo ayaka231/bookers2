@@ -1,43 +1,4 @@
-<% if @book.errors.any? %>
-  <%= @book.errors.count %>errors
-  <% @book.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
-<% end %>
-
-<h1>User info</h1>
-
- <%= attachment_image_tag @user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
-
-<table>
-  <tbody>
-    <tr>
-     <td>name</td>
-     <td><%= @user.name %></td>
-     <td>introduction</td>
-     <td><%= @user.introduction %></td>
-    </tr>
-  </tbody>
-</table>
-
-<% if @user.id == current_user.id %>
- <%=link_to 'プロフィール編集', edit_user_path(@user) %>
-<% else %>
- <%=link_to 'プロフィール編集' %>
-<% end %>
-
-<h1>New Book</h1>
-<%= form_with model:@book, local:true do |f| %>
-
-<h4>Title</h4>
-<%=f.text_field :title %>
-
-<h4>Opinion</h4>
-<%= f.text_area :body %>
-
-<%= f.submit 'Create Book' %>
-
-<% end %>
+<%= render 'books/list', book: @book, user: @user %>
 
 <h2>Book detail</h2>
 <table>
