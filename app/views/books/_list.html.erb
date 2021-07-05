@@ -5,36 +5,50 @@
   <% end %>
 <% end %>
 
+<div class ="col-md-3">
 <h1>User info</h1>
 
- <%= attachment_image_tag user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%>
+ <%= attachment_image_tag user, :profile_image, :fill, 100, 100, fallback: "no_image.jpg"%>
 
-<table>
-  <tbody>
-    <tr>
-     <td>name</td>
-     <td><%= user.name %></td>
-     <td>introduction</td>
-     <td><%= user.introduction %></td>
-    </tr>
-  </tbody>
-</table>
+  <table class ="table">
+    <tbody>
+      <tr>
+       <th>name</th>
+       <td><%= user.name %></td>
+      </tr>
+      <tr>
+       <td>introduction</td>
+       <th><%= user.introduction %></th>
+      </tr>
+    </tbody>
+  </table>
 
-<% if user.id == current_user.id %>
- <%=link_to 'プロフィール編集', edit_user_path(user) %>
-<% else %>
- <%=link_to 'プロフィール編集' %>
-<% end %>
+  <div class ="row">
+    <% if user.id == current_user.id %>
+      <%=link_to "", edit_user_path(user), class: 'btn btn-outline-secondary btn-block fas fa-user-cog' %>
+    <% else %>
+      <div class ="btn btn-outline-secondary btn-block fas fa-user-cog"></div>
+    <% end %>
+  </div>
 
-<h1>New Book</h1>
-<%= form_with model:book, local:true do |f| %>
+  <h1 class ="mt-3">New Book</h1>
 
-<h4>Title</h4>
-<%=f.text_field :title %>
+  <%= form_with model:book, local:true do |f| %>
 
-<h4>Opinion</h4>
-<%= f.text_area :body %>
+  <div class ="form-group">
+    <label for="book_title">Title</label>
+    <%=f.text_field :title, class: 'form_control book_title' %>
+  </div>
 
-<%= f.submit 'Create Book' %>
+  <div class ="form-group">
+    <label for= "book_opinion">Opinion</label>
+    <%= f.text_area :body, class: 'form_control book_body' %>
+  </div>
 
-<% end %>
+  <br>
+
+  <%= f.submit 'Create Book', class: 'btn btn-success' %>
+
+  <% end %>
+
+</div>

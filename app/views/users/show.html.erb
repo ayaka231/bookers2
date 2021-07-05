@@ -1,19 +1,24 @@
+<div class ="container px-5 px-sm-0">
+  <div class ="row">
+
 <%= render 'books/list', book: @book, user: @user %>
 
+<div class ="col-md-8 offset-md-1">
 <h1>Books</h1>
-<table>
+<table class ="table table-hover table-inverse">
   <thead>
     <tr>
       <th></th>
       <th>Title</th>
       <th>Opinion</th>
+      <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
     <tr>
     <% @books.each do |book| %>
-      <td><%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg"%></td>
+      <td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %></td>
       <td><%= link_to book_path(book) do %>
         <%= book.title %>
         <% end %>
@@ -23,3 +28,5 @@
     <% end %>
   </tbody>
 </table>
+</div>
+</div>

@@ -5,19 +5,32 @@
   <% end %>
 <% end %>
 
-<h1>Editing Book</h1>
-<%= form_with model:@book, local:true do |f| %>
+<div class ="container">
+  <div class ="row">
+    <div class ="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+　　　<h1>Editing Book</h1>
+　　　<%= form_with model:@book, local:true do |f| %>
 
-<h4>Title</h4>
-<%=f.text_field :title %>
+      <div class ="form-group">
+        <label for="book_title">Title</label>
+        <%=f.text_field :title, class: 'form_control book_title'%>
+      </div>
 
-<h4>Opinion</h4>
-<%= f.text_area :body %>
+      <div class ="form-group">
+        <label for ="book_body">Opinion</label>
+        <%= f.text_area :body, class: 'form_control book_body' %>
+      </div>
 
-<%= f.submit 'Update Book' %>
+      <div class ="form-group">
+       <%= f.submit 'Update Book', class: 'btn btn-success' %>
+      </div>
 
-<% end %>
+      <% end %>
 
-<%= link_to 'Show', books_path(@book) %>
-|
-<%= link_to 'Back', books_path %>
+      <%= link_to 'Show', books_path(@book) %>
+       |
+      <%= link_to 'Back', books_path %>
+
+    </div>
+  </div>
+</div>
