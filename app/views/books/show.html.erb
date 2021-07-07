@@ -1,4 +1,11 @@
 <div class ="container px-5 px-sm-0">
+ <% if @book.errors.any? %>
+  <%= @book.errors.count %>errors
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
+
   <div class ="row">
 
     <%= render 'books/list', book: @book, user: @user %>
@@ -10,18 +17,20 @@
        <tbody>
         <tr>
          <td><%= link_to user_path(@user) do %>
-          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg',  fallback: "no_image.jpg"%><br>
+          <%= attachment_image_tag @user, :profile_image, :fill, 40, 40, format: 'jpeg',  fallback: "no_image.jpg", size: "40x40"%><br>
           <%= @user.name %>
           <% end %>
          </td>
         <td><%= @books.title %> </td>
         <td><%= @books.body %></td>
-        <% if @books.user == current_user %>
-        <td><%= link_to 'Edit', edit_book_path(@books), class: 'btn btn-success' %></td>
+        <td><% if @books.user == current_user %>
+               <%= link_to 'Edit', edit_book_path(@books), class: 'btn btn-success' %>
+            <% end %>
+         </td>
+        <td><% if @books.user == current_user %>
+        <%= link_to 'Destroy', book_path(@books), method: :delete, class: 'btn btn-danger' %>
         <% end %>
-        <% if @books.user == current_user %>
-        <td><%= link_to 'Destroy', book_path(@books), method: :delete, class: 'btn btn-danger' %></td>
-       <% end %>
+        </td>
      </tr>
      </tbody>
    </table>

@@ -1,4 +1,10 @@
 <div class ="container px-5 px-sm-0">
+  <% if @book.errors.any? %>
+  <%= @book.errors.count %>errors
+  <% @book.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+<% end %>
   <div class ="row">
 
 <%= render 'books/list', book: @book, user: @user %>
@@ -18,7 +24,7 @@
   <tbody>
     <tr>
     <% @books.each do |book| %>
-      <td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg" %></td>
+      <td><%= attachment_image_tag book.user, :profile_image, :fill, 40, 40, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %></td>
       <td><%= link_to book_path(book) do %>
         <%= book.title %>
         <% end %>
